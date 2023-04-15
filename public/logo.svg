@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="162.18" height="36" viewBox="0 0 162.18 36">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="長方形_42" data-name="長方形 42" width="24" height="36" transform="translate(93 88.701)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="グループ_23" data-name="グループ 23" transform="translate(-83 -24.701)">
+    <text id="Prompt_Note" data-name="Prompt Note" transform="translate(114.18 49.201)" fill="#222" font-size="18" font-family="BrotherXL-ExtraBold, Brother XL" font-weight="800" letter-spacing="-0.01em"><tspan x="0" y="0">Prompt Note</tspan></text>
+    <g id="マスクグループ_1" data-name="マスクグループ 1" transform="translate(-10 -64)" clip-path="url(#clip-path)">
+      <g id="グループ_22" data-name="グループ 22" transform="translate(65.93 6.914) rotate(45)">
+        <g id="コンポーネント_2_1" data-name="コンポーネント 2 – 1" transform="translate(89 26)">
+          <rect id="長方形_26" data-name="長方形 26" width="14.372" height="14.372" rx="7" transform="translate(0 11.759)"/>
+          <path id="多角形_1" data-name="多角形 1" d="M5.226,0l5.226,9.146H0Z" transform="translate(1.96)" fill="#222"/>
+          <path id="多角形_2" data-name="多角形 2" d="M5.226,0l5.226,9.146H0Z" transform="translate(26.11 13.719) rotate(90)" fill="#222"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
