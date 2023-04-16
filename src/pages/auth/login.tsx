@@ -1,7 +1,8 @@
-import { FormEvent, useRef } from 'react'
 import { NextPage } from 'next'
 import Link from 'next/link'
-import { useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useRouter } from 'next/router'
+import { FormEvent, useEffect, useRef } from 'react'
+import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import styles from '@/styles/Auth.module.scss'
@@ -10,6 +11,12 @@ const Login: NextPage = () => {
   const supabase = useSupabaseClient()
   const emailRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
+  const user = useUser()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (user) router.push('/')
+  }, [user])
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -17,6 +24,13 @@ const Login: NextPage = () => {
       email: emailRef.current!.value,
       password: passwordRef.current!.value,
     })
+
+    if (error) {
+      alert(error.message)
+      return
+    }
+
+    router.push('/dashboard')
   }
 
   return (

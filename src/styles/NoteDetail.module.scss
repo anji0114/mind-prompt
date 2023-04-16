@@ -1,0 +1,43 @@
+.inner {
+  padding: 100px 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title textarea {
+  width: 100%;
+  min-height: 35px;
+  height: auto;
+  font-size: 30px;
+  border-bottom: 1px solid #d0d7de;
+  resize: vertical;
+  overflow: visible;
+}
+
+.content {
+  margin-top: 60px;
+
+  textarea {
+    padding: 20px;
+    border: 1px solid #d0d7de;
+    width: 100%;
+    height: 400px;
+    resize: vertical;
+  }
+}
+
+.button {
+  margin-top: 60px;
+  text-align: center;
+
+  button {
+    padding: 12px 40px;
+    color: #fff;
+    background-color: #222;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: #444;
+    }
+  }
+}

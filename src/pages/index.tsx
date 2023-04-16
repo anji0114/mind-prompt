@@ -3,14 +3,11 @@ import styles from '@/styles/Home.module.css'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
+import Link from 'next/link'
 
-export default function Home() {
+const Home = () => {
   const user = useUser()
   const supbase = useSupabaseClient()
-
-  const logOut = () => {
-    supbase.auth.signOut()
-  }
 
   return (
     <>
@@ -23,9 +20,9 @@ export default function Home() {
       <Header />
       <div className="container">
         {user ? (
-          <button onClick={logOut}>logout {user.email}</button>
+          <Link href="/dashboard">ダッシュボード</Link>
         ) : (
-          <p>ログアウト中</p>
+          <Link href="/auth/login">ログイン</Link>
         )}
       </div>
 
@@ -33,3 +30,5 @@ export default function Home() {
     </>
   )
 }
+
+export default Home
