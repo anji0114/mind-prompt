@@ -1,23 +1,19 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { FormEvent, useEffect, useRef } from 'react'
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
+import { FormEvent, useRef } from 'react'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import styles from '@/styles/Auth.module.scss'
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 
 const Login: NextPage = () => {
   const supabase = useSupabaseClient()
   const emailRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
-  const user = useUser()
+
   const router = useRouter()
-
-  useEffect(() => {
-    if (user) router.push('/')
-  }, [user])
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const { error } = await supabase.auth.signInWithPassword({
@@ -87,3 +83,24 @@ const Login: NextPage = () => {
 }
 
 export default Login
+
+export const getServerSideProps = async (ctx: any) => {
+  const supabase = createServerSupabaseClient(ctx)
+  // Check if we have a session
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/dashboard',
+        permanent: false,
+      },
+    }
+  }
+
+  return {
+    props: {},
+  }
+}

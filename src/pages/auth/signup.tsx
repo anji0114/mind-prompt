@@ -6,19 +6,14 @@ import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import styles from '@/styles/Auth.module.scss'
 import { useRouter } from 'next/router'
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 
-const signup = () => {
+const Signup = () => {
   const supabase = useSupabaseClient()
   const nameRef = useRef<HTMLInputElement>(null)
   const emailRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
-
-  const user = useUser()
   const router = useRouter()
-
-  useEffect(() => {
-    if (user) router.push('/')
-  }, [user])
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -102,4 +97,25 @@ const signup = () => {
   )
 }
 
-export default signup
+export default Signup
+
+export const getServerSideProps = async (ctx: any) => {
+  const supabase = createServerSupabaseClient(ctx)
+  // Check if we have a session
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/dashboard',
+        permanent: false,
+      },
+    }
+  }
+
+  return {
+    props: {},
+  }
+}
