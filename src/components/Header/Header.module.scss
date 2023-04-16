@@ -3,6 +3,16 @@
   padding: 20px 0 19px;
 }
 
+.container {
+  padding: 0 15px;
+
+  @media only screen and (min-width: 768px) {
+    padding: 0 30px;
+    margin: 0 auto;
+    max-width: 1140px;
+  }
+}
+
 .inner {
   display: flex;
   align-items: center;
@@ -10,9 +20,9 @@
 }
 
 .logo {
+  display: inline-block;
   width: 140px;
 
-  a,
   img {
     display: inline-block;
     width: 100%;
@@ -60,8 +70,8 @@
   }
 
   @media only screen and (min-width: 768px) {
-    font-size: 14px;
     margin-left: 20px;
     padding: 10px 25px 9px;
+    font-size: 14px;
   }
 }

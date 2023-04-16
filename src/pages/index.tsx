@@ -3,6 +3,7 @@ import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
 import Link from 'next/link'
+import { Layout } from '@/components/Layout'
 
 const Home = () => {
   const user = useUser()
@@ -16,16 +17,13 @@ const Home = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
-      <div className="container">
+      <Layout>
         {user ? (
           <Link href="/dashboard">ダッシュボード</Link>
         ) : (
           <Link href="/auth/login">ログイン</Link>
         )}
-      </div>
-
-      <Footer />
+      </Layout>
     </>
   )
 }

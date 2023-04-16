@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {
-  SupabaseClient,
-  useSupabaseClient,
-  useUser,
-} from '@supabase/auth-helpers-react'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 
 import styles from '@/styles/Dashboard.module.scss'
@@ -12,6 +8,7 @@ import { Header } from '@/components/Header'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { Layout } from '@/components/Layout'
 
 type User = {
   id: string
@@ -79,32 +76,28 @@ const Dashboard: NextPage<{ user: User }> = ({ user }) => {
 
   return (
     <>
-      <Header />
-      <div className={styles.wrap}>
-        <div className="container">
-          <div className={styles.inner}>
-            <h2 className={styles.title}>ダッシュボード</h2>
-            <button className={styles.createButton} onClick={handleCreateNote}>
-              ノート作成
-            </button>
+      <Layout>
+        <div className={styles.inner}>
+          <h2 className={styles.title}>ダッシュボード</h2>
+          <button className={styles.createButton} onClick={handleCreateNote}>
+            ノート作成
+          </button>
 
-            <ul className={styles.list}>
-              {notes?.map((note) => (
-                <li key={note.id} className={styles.item}>
-                  <Link href={`note/${note.id}`}>{note.title}</Link>
-                  <button
-                    className={styles.delete}
-                    onClick={() => handleDeleteNote(note.id)}
-                  >
-                    削除
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className={styles.list}>
+            {notes?.map((note) => (
+              <li key={note.id} className={styles.item}>
+                <Link href={`note/${note.id}`}>{note.title}</Link>
+                <button
+                  className={styles.delete}
+                  onClick={() => handleDeleteNote(note.id)}
+                >
+                  削除
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
-      </div>
-      <Footer />
+      </Layout>
     </>
   )
 }
