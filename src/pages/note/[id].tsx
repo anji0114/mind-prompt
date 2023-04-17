@@ -1,19 +1,12 @@
-import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import TextareaAutosize from 'react-textarea-autosize'
 
 import styles from '@/styles/NoteDetail.module.scss'
-
-type Note = {
-  id: string
-  user_id: string
-  title: string
-  content: string
-}
+import { Layout } from '@/components/Layout'
 
 const NoteDetail: NextPage = () => {
   const [id, setId] = useState<string | undefined>()
@@ -51,35 +44,37 @@ const NoteDetail: NextPage = () => {
       setContent(data?.content)
     }
     getNote()
-  }, [router])
+  }, [supabase])
 
   return (
     <>
-      <Header />
-      <div className="container">
+      <Layout>
         <div className={styles.inner}>
           <h1 className={styles.title}>
-            <textarea
+            <TextareaAutosize
               value={title}
+              minRows={1}
+              placeholder="タイトル"
               onChange={(e) => {
                 setTitle(() => e.target.value)
               }}
-            ></textarea>
+            />
           </h1>
           <div className={styles.content}>
-            <textarea
+            <TextareaAutosize
               value={content}
               onChange={(e) => {
                 setContent(() => e.target.value)
               }}
-            ></textarea>
+              minRows={6}
+              placeholder="入力する"
+            />
           </div>
           <p className={styles.button}>
             <button onClick={handleNoteUpdate}>保存する</button>
           </p>
         </div>
-      </div>
-      <Footer />
+      </Layout>
     </>
   )
 }

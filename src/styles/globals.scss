@@ -270,13 +270,3 @@ body {
   color: #222;
   background-color: #fdfeff;
 }
-
-.container {
-  max-width: 1140px;
-  padding: 0 15px;
-  margin: 0 auto;
-
-  @media only screen and (min-width: 768px) {
-    padding: 0 30px;
-  }
-}
