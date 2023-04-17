@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 
 import styles from '@/styles/Dashboard.module.scss'
-import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
