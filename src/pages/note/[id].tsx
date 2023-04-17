@@ -8,7 +8,13 @@ import TextareaAutosize from 'react-textarea-autosize'
 import styles from '@/styles/NoteDetail.module.scss'
 import { Layout } from '@/components/Layout'
 
-const NoteDetail: NextPage = () => {
+type Note = {
+  id: string
+  title: string
+  content: string
+}
+
+const NoteDetail: NextPage<{ note: Note }> = ({ note }) => {
   const [id, setId] = useState<string | undefined>()
   const [title, setTitle] = useState<string | undefined>()
   const [content, setContent] = useState<string | undefined>()
@@ -16,7 +22,7 @@ const NoteDetail: NextPage = () => {
   const router = useRouter()
 
   const handleNoteUpdate = async () => {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('notes')
       .update({
         title: title,
@@ -28,23 +34,15 @@ const NoteDetail: NextPage = () => {
       alert(error.message)
       return
     }
+
     router.push('/dashboard')
   }
 
   useEffect(() => {
-    const getNote = async () => {
-      const { data, error } = await supabase
-        .from('notes')
-        .select('*')
-        .eq('id', router.query.id)
-        .single()
-
-      setId(data?.id)
-      setTitle(data?.title)
-      setContent(data?.content)
-    }
-    getNote()
-  }, [supabase])
+    setId(note.id)
+    setTitle(note.title)
+    setContent(note.content)
+  }, [])
 
   return (
     <>
@@ -83,7 +81,6 @@ export default NoteDetail
 
 export const getServerSideProps = async (ctx: any) => {
   const supabase = createServerSupabaseClient(ctx)
-  // Check if we have a session
   const {
     data: { session },
   } = await supabase.auth.getSession()
