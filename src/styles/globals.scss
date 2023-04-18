@@ -270,3 +270,16 @@ body {
   color: #222;
   background-color: #fdfeff;
 }
+
+// 仮
+.prompt {
+  textarea {
+    width: 100%;
+    border: 1px solid #aaa;
+  }
+
+  button {
+    padding: 5px;
+    background-color: #ddd;
+  }
+}

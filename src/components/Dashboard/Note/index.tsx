@@ -27,13 +27,14 @@ export const DashboardNote = () => {
         user_id: user?.id,
       })
       .select()
+      .single()
 
     if (error) {
       alert(error.message)
       return
     }
 
-    router.push(`/note/${data[0].id}`)
+    router.push(`/note/${data.id}`)
   }
 
   useEffect(() => {

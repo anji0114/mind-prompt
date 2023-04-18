@@ -17,7 +17,7 @@ export const DashboardSidebar = () => {
           </Link>
         </li>
         <li className={styles.item}>
-          <Link href="/dashboard" className={styles.link}>
+          <Link href="/dashboard/prompt" className={styles.link}>
             <CommandLineIcon />
             <span>プロンプト</span>
           </Link>

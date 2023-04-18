@@ -1,12 +1,23 @@
 .grid {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .aside {
-  width: 200px;
+  position: sticky;
+  top: 10px;
+  width: 170px;
+
+  @media only screen and (min-width: 991px) {
+    width: 200px;
+  }
 }
 
 .main {
-  width: calc(100% - 200px - 50px);
+  width: calc(100% - 170px - 30px);
+
+  @media only screen and (min-width: 991px) {
+    width: calc(100% - 200px - 50px);
+  }
 }

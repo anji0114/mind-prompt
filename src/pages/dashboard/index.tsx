@@ -22,13 +22,14 @@ export const getServerSideProps = async (ctx: any) => {
     data: { session },
   } = await supabase.auth.getSession()
 
-  if (!session)
+  if (!session) {
     return {
       redirect: {
         destination: '/auth/login',
         permanent: false,
       },
     }
+  }
 
   return {
     props: {
