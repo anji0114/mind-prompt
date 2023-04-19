@@ -2,8 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
-import styles from './Header.module.scss'
-import { HeaderAuthButtons } from './HeaderAuthButtons'
+import { HeaderAuthButtons } from '@/components/Header/HeaderAuthButtons'
 
 export const Header = () => {
   const user = useUser()
@@ -16,18 +15,20 @@ export const Header = () => {
   }
 
   return (
-    <header className={styles.header}>
-      <div className={styles.container}>
-        <div className={styles.inner}>
-          
-          <Link href={!user ? '/' : '/dashboard'} className={styles.logo}>
+    <header className="py-5 border-b border-[#d0d7de]">
+      <div className="max-w-[1140px] w-full mx-auto px-7">
+        <div className="flex items-center justify-between">
+          <Link href={!user ? '/' : '/dashboard'} className="inline-block">
             <Image src="/logo.svg" alt="Prompt Note" width={187} height={36} />
           </Link>
-          <div className={styles.links}>
+          <div className="flex items-center">
             {!user ? (
               <HeaderAuthButtons />
             ) : (
-              <button className={styles.logout} onClick={logout}>
+              <button
+                className="text-sm font-medium underline-offset-2 hover:underline"
+                onClick={logout}
+              >
                 ログアウト
               </button>
             )}

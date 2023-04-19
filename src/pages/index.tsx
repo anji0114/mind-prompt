@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { Layout } from '@/components/Layout'
-import { HomeMv } from '@/components/Home/Mv/HomeMv'
+import { HomeMv } from '@/components/Home/HomeMv'
 
 const Home = () => {
   return (

@@ -41,18 +41,19 @@ export const NoteDetail: FC<{ note: Props }> = ({ note }) => {
   }, [note])
 
   return (
-    <div className={styles.inner}>
-      <h1 className={styles.title}>
+    <div className="max-w-[800px] mx-auto">
+      <h1>
         <TextareaAutosize
           value={title}
           minRows={1}
           placeholder="タイトル"
+          className=" w-full text-3xl pb-5 outline-none resize-none border-b border-[#d0d7de]"
           onChange={(e) => {
             setTitle(() => e.target.value)
           }}
         />
       </h1>
-      <div className={styles.content}>
+      <div className="mt-7">
         <TextareaAutosize
           value={content}
           onChange={(e) => {
@@ -60,10 +61,16 @@ export const NoteDetail: FC<{ note: Props }> = ({ note }) => {
           }}
           minRows={6}
           placeholder="入力する"
+          className=" w-full py-2.5 px-1 outline-none leading-8 resize-none"
         />
       </div>
-      <p className={styles.button}>
-        <button onClick={handleNoteUpdate}>保存する</button>
+      <p className="mt-14 text-center">
+        <button
+          onClick={handleNoteUpdate}
+          className="inline-block py-3 px-10 text-white bg-[#222] rounded hover:bg-[#555]"
+        >
+          保存する
+        </button>
       </p>
     </div>
   )

@@ -4,28 +4,37 @@ import {
   CommandLineIcon,
   Cog8ToothIcon,
 } from '@heroicons/react/24/outline'
-import styles from '@/components/Dashboard/Nav.module.scss'
+
 
 export const DashboardNav = () => {
   return (
     <nav>
-      <ul className={styles.list}>
-        <li className={styles.item}>
-          <Link href="/dashboard" className={styles.link}>
-            <DocumentTextIcon />
-            <span>ノート</span>
+      <ul className="space-y-[6px]">
+        <li>
+          <Link
+            href="/dashboard"
+            className="py-2.5 px-4 w-full flex gap-2 items-center border border-[#d0d7de] rounded-md bg-white hover:bg-[#fafafa]"
+          >
+            <DocumentTextIcon className="w-[22px]" />
+            <span className=" inline-block text-sm pb-[1px]">ノート</span>
           </Link>
         </li>
-        <li className={styles.item}>
-          <Link href="/dashboard/prompt" className={styles.link}>
-            <CommandLineIcon />
-            <span>プロンプト</span>
+        <li>
+          <Link
+            href="/dashboard/prompt"
+            className="py-2.5 px-4 w-full flex gap-2 items-center border border-[#d0d7de] rounded-md bg-white hover:bg-[#fafafa]"
+          >
+            <CommandLineIcon className="w-[22px]" />
+            <span className=" inline-block text-sm pb-[1px]">プロンプト</span>
           </Link>
         </li>
-        <li className={styles.item}>
-          <Link href="/dashboard" className={styles.link}>
-            <Cog8ToothIcon />
-            <span>設定</span>
+        <li>
+          <Link
+            href="/dashboard"
+            className="py-2.5 px-4 w-full flex gap-2 items-center border border-[#d0d7de] rounded-md bg-white hover:bg-[#fafafa]"
+          >
+            <Cog8ToothIcon className="w-[22px]" />
+            <span className=" inline-block text-sm pb-[1px]">設定</span>
           </Link>
         </li>
       </ul>

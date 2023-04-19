@@ -7,7 +7,6 @@ import {
   CommandLineIcon,
 } from '@heroicons/react/24/outline'
 import { NoteItem } from '@/components/Dashboard/NoteItem'
-import styles from '@/components/Dashboard/Note.module.scss'
 
 type Note = {
   id: string
@@ -50,25 +49,27 @@ export const DashboardNote: FC<Props> = ({ notes, user }) => {
 
   return (
     <>
-      <div className={styles.heading}>
-        <h2 className={styles.title}>
-          <DocumentTextIcon />
-          <span>ノート管理</span>
+      <div className="flex items-center justify-between py-[14px] px-5 border border-[#d0d7de] rounded-md bg-white">
+        <h2 className="flex items-center gap-2.5">
+          <DocumentTextIcon className="w-[30px]" />
+          <span className="inline-block whitespace-nowrap">ノート管理</span>
         </h2>
-        <div className={styles.buttons}>
-          <button className={styles.promptButton}>
-            <CommandLineIcon />
-            プロンプトから作成
+        <div className="flex items-center gap-3">
+          <button className="flex items-center py-2.5 px-5 gap-2 rounded border border-[#222] hover:bg-[#f5f5f5]">
+            <CommandLineIcon className="w-[18px] translate-y-[1px]" />
+            <span className="text-sm inline-block">プロンプトから作成</span>
           </button>
-          <button className={styles.createButton} onClick={handleCreateNote}>
-            <PlusIcon />
-            新規作成
+          <button
+            className="flex items-center py-2.5 px-5 gap-2 rounded bg-[#222] text-white hover:bg-[#555]"
+            onClick={handleCreateNote}
+          >
+            <PlusIcon className="w-[18px] translate-y-[1px] " />
+            <span className="text-sm inline-block">新規作成</span>
           </button>
         </div>
       </div>
 
-      <div className={styles.contents}></div>
-      <ul className={styles.list}>
+      <ul className="mt-8 space-y-[1px]">
         {notes?.map((note) => (
           <NoteItem key={note.id} id={note.id} title={note.title} />
         ))}

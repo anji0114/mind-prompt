@@ -11,7 +11,7 @@ export const AuthSignup = () => {
   const passwordRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const { data: signUpData, error: signUpError } = await supabase.auth.signUp(
       {
@@ -41,40 +41,57 @@ export const AuthSignup = () => {
 
   return (
     <>
-      <form className={styles.form} onSubmit={onSubmit}>
-        <div className={styles.formList}>
-          <dl className={styles.formItem}>
-            <dd className={styles.formTitle}>ユーザーネーム</dd>
-            <dd className={styles.formArea}>
-              <input type="text" placeholder="タロー" ref={nameRef} required />
+      <form className="mt-10" onSubmit={handleSubmit}>
+        <div className="space-y-5">
+          <dl>
+            <dd className="text-sm">ユーザーネーム</dd>
+            <dd className="mt-2">
+              <input
+                type="text"
+                placeholder="ユーザーネーム"
+                ref={nameRef}
+                required
+                className="w-full py-2.5 px-3 border border-[#d0d7de] rounded bg-white"
+              />
             </dd>
           </dl>
-          <dl className={styles.formItem}>
-            <dd className={styles.formTitle}>メールアドレス</dd>
-            <dd className={styles.formArea}>
+          <dl>
+            <dd className="text-sm">メールアドレス</dd>
+            <dd className="mt-2">
               <input
                 type="text"
                 placeholder="mail@example.com"
                 ref={emailRef}
                 required
+                className="w-full py-2.5 px-3 border border-[#d0d7de] rounded bg-white"
               />
             </dd>
           </dl>
-          <dl className={styles.formItem}>
-            <dd className={styles.formTitle}>パスワード</dd>
-            <dd className={styles.formArea}>
-              <input type="password" ref={passwordRef} required />
+          <dl>
+            <dd className="text-sm">パスワード</dd>
+            <dd className="mt-2">
+              <input
+                type="password"
+                ref={passwordRef}
+                required
+                className="w-full py-2.5 px-3 border border-[#d0d7de] rounded bg-white"
+              />
             </dd>
           </dl>
         </div>
-        <div className={styles.submitWrap}>
-          <button className={`${styles.button} ${styles.isSubmit}`}>
+        <div className="text-center mt-10">
+          <button className="w-full inline-block py-3 text-sm rounded text-white bg-[#222] hover:bg-[#555]">
             サインアップ
           </button>
         </div>
       </form>
-      <div className={styles.linkWrap}>
-        <Link href="/auth/login">ログインはこちらから</Link>
+      <div className="mt-5 text-center">
+        <Link
+          href="/auth/login"
+          className="text-sm underline uppercase hover:opacity-75"
+        >
+          ログインはこちらから
+        </Link>
       </div>
     </>
   )

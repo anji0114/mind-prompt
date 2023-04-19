@@ -1,6 +1,5 @@
 import { FC, ReactNode } from 'react'
 import { DashboardNav } from './Nav'
-import styles from '@/components/Dashboard/Layout.module.scss'
 
 type Props = {
   children: ReactNode
@@ -8,11 +7,11 @@ type Props = {
 
 export const DashBoardLayout: FC<Props> = ({ children }) => {
   return (
-    <div className={styles.grid}>
-      <aside className={styles.aside}>
+    <div className="flex justify-between items-start relative gap-12">
+      <aside className="sticky top-3 left-0 w-[200px]">
         <DashboardNav />
       </aside>
-      <main className={styles.main}>{children}</main>
+      <main className="w-full">{children}</main>
     </div>
   )
 }

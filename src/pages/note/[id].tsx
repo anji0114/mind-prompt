@@ -1,7 +1,7 @@
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { NextPage } from 'next'
 import { NoteDetail } from '@/components/Note/NoteDetail'
-import { EditorLayout } from '@/components/Editor/EditorLayout'
+import { EditorLayout } from '@/components/Editor/Layout'
 
 type Note = {
   id: string

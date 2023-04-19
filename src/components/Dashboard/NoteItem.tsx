@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/router'
 import { ListBulletIcon } from '@heroicons/react/24/solid'
-import styles from '@/components/Dashboard/NoteItem.module.scss'
+
 
 type Props = {
   id: string
@@ -26,38 +26,42 @@ export const NoteItem: FC<Props> = ({ id, title }) => {
   }
 
   return (
-    <li className={styles.item}>
-      <div className={styles.contents}>
-        <p className={styles.date}>2022.01.01</p>
-        <p className={styles.title}>
-          <Link href={`note/${id}`}>{title}</Link>
+    <li className="note-item flex gap-5 justify-between items-start py-5 px-7 bg-white border border-[#d0d7de]">
+      <div className="w-full">
+        <p className="pl-[2px] text-[#555] text-[12px]">2022.01.01</p>
+        <p className="mt-2.5">
+          <Link
+            href={`note/${id}`}
+            className="text-[#4e6bb4] font-medium underline-offset-2  hover:underline"
+          >
+            {title}
+          </Link>
         </p>
-        <p className={styles.description}>
+        <p className="mt-2 text-sm text-[#444]">
           インスピレーションを磨く、アイデアを育てるためのノートです。
         </p>
       </div>
-      <div className={styles.menu}>
+      <div className="w-[40px] relative">
         <button
-          className={`${styles.menuButton} ${
-            menuOpen ? styles.isOpen : styles.isClose
+          className={`w-full inline-block text-center h-[30px] pb-1 border border-[#d0d7de] rounded-md hover:bg-[#f7fafd] ${
+            menuOpen ? 'bg-[#f7fafd]' : 'bg-white'
           }`}
           onClick={() => setMenuOpen((prevState) => !prevState)}
         >
-          <ListBulletIcon />
+          <ListBulletIcon className=" inline-block w-5" />
         </button>
-        <ul
-          className={`${styles.menuList} ${
-            menuOpen ? styles.isOpen : styles.isClose
-          }`}
-        >
-          <li className={styles.menuItem}>
-            <Link href={`note/${id}`} className={styles.editButton}>
+        <ul className={`menu-ist ${menuOpen ? 'is--open' : 'is--close'}`}>
+          <li className="w-full text-center">
+            <Link
+              href={`note/${id}`}
+              className="inline-block w-full p-2.5 text-[12px] font-medium hover:bg-[#f7f7f7]"
+            >
               編集する
             </Link>
           </li>
-          <li className={styles.menuItem}>
+          <li className="w-full text-center border-t border-[#ebeef2]">
             <button
-              className={styles.deleteButton}
+              className="inline-block w-full p-2.5 text-[12px] font-medium text-[#de6868] hover:bg-[#fff4f4]"
               onClick={() => handleDeleteNote(id)}
             >
               削除する
