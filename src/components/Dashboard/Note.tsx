@@ -6,8 +6,8 @@ import {
   PlusIcon,
   CommandLineIcon,
 } from '@heroicons/react/24/outline'
-import { NoteItem } from '@/components/Note/NoteItem'
-import styles from './DashboardNote.module.scss'
+import { NoteItem } from '@/components/Dashboard/NoteItem'
+import styles from '@/components/Dashboard/Note.module.scss'
 
 type Note = {
   id: string

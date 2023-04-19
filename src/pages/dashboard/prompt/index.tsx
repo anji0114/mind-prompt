@@ -1,4 +1,4 @@
-import { DashBoardLayout } from '@/components/Dashboard/DashboardLayout'
+import { DashBoardLayout } from '@/components/Dashboard/Layout'
 import { Layout } from '@/components/Layout'
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'

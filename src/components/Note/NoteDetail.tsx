@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
 import styles from '@/components/Note/NoteDetail.module.scss'
+import { useStore } from '@/store'
 
 type Props = {
   id: string

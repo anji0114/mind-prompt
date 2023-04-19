@@ -4,9 +4,9 @@ import {
   CommandLineIcon,
   Cog8ToothIcon,
 } from '@heroicons/react/24/outline'
-import styles from '@/components/Dashboard/Nav/DashboardNav.module.scss'
+import styles from '@/components/Dashboard/Nav.module.scss'
 
-export const DashboardSidebar = () => {
+export const DashboardNav = () => {
   return (
     <nav>
       <ul className={styles.list}>

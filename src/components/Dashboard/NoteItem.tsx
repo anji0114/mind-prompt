@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/router'
 import { ListBulletIcon } from '@heroicons/react/24/solid'
-import styles from '@/components/Note/NoteItem.module.scss'
+import styles from '@/components/Dashboard/NoteItem.module.scss'
 
 type Props = {
   id: string
@@ -54,9 +54,6 @@ export const NoteItem: FC<Props> = ({ id, title }) => {
             <Link href={`note/${id}`} className={styles.editButton}>
               編集する
             </Link>
-          </li>
-          <li className={styles.menuItem}>
-            <button className={styles.quickButton}>クイック編集</button>
           </li>
           <li className={styles.menuItem}>
             <button

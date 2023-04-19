@@ -22,7 +22,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-textarea-autosize": "^8.4.1",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "zustand": "^4.3.7"
   },
   "devDependencies": {
     "prettier": "^2.8.7",
