@@ -2,6 +2,7 @@ import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { NextPage } from 'next'
 import { Layout } from '@/components/Layout'
 import { NoteDetail } from '@/components/Note/NoteDetail'
+import { EditorLayout } from '@/components/Editor/EditorLayout'
 
 type Note = {
   id: string
@@ -11,9 +12,9 @@ type Note = {
 
 const NoteId: NextPage<{ note: Note }> = ({ note }) => {
   return (
-    <Layout>
+    <EditorLayout>
       <NoteDetail note={note} />
-    </Layout>
+    </EditorLayout>
   )
 }
 
