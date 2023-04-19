@@ -1,5 +1,5 @@
-import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { NextPage } from 'next'
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { Layout } from '@/components/Layout'
 import { DashBoardLayout } from '@/components/Dashboard/Layout'
 import { DashboardNote } from '@/components/Dashboard/Note'

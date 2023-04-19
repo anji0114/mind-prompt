@@ -1,68 +1,30 @@
-import { DashBoardLayout } from '@/components/Dashboard/Layout'
-import { Layout } from '@/components/Layout'
-import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
 import { NextPage } from 'next'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import { Prompt } from '@/types'
+import { Layout } from '@/components/Layout'
+import { DashBoardLayout } from '@/components/Dashboard/Layout'
+import { DashboardPrompt } from '@/components/Dashboard/Prompt'
 
-type Prompt = {
+type User = {
   id: string
-  title: string
-  content: string
 }
 
-const DashboardPrompt: NextPage<{ prompts: Prompt[] }> = ({ prompts }) => {
-  const user = useUser()
-  const supabase = useSupabaseClient()
-  const router = useRouter()
+type Props = {
+  prompts: Prompt[]
+  user: User
+}
 
-  const handleCreatePrompt = async () => {
-    const { data, error } = await supabase
-      .from('prompts')
-      .insert({
-        title: '新規プロンプト',
-        content: '',
-        description: '',
-        user_id: user?.id,
-      })
-      .select()
-      .single()
-
-    if (error) {
-      alert(error.message)
-      return
-    }
-
-    router.push(`/prompt/${data.id}`)
-  }
-
+const Prompt: NextPage<Props> = ({ prompts, user }) => {
   return (
-    <div>
-      <Layout>
-        <DashBoardLayout>
-          <div className="heading">
-            <h1>プロンプトかんり</h1>
-            <button onClick={handleCreatePrompt}>新規作成</button>
-          </div>
-          <ul className="list">
-            {prompts.map((prompt) => (
-              <li className="item" key={prompt.id}>
-                <p>2002年1月14日</p>
-                <h2>
-                  <Link href={`/prompt/${prompt.id}`}>{prompt.title}</Link>
-                </h2>
-                <p>説明がき</p>
-              </li>
-            ))}
-          </ul>
-        </DashBoardLayout>
-      </Layout>
-    </div>
+    <Layout>
+      <DashBoardLayout>
+        <DashboardPrompt prompts={prompts} user={user} />
+      </DashBoardLayout>
+    </Layout>
   )
 }
 
-export default DashboardPrompt
+export default Prompt
 
 export const getServerSideProps = async (ctx: any) => {
   const supabase = createServerSupabaseClient(ctx)
@@ -88,6 +50,7 @@ export const getServerSideProps = async (ctx: any) => {
   return {
     props: {
       prompts: promptsData,
+      user: session.user,
     },
   }
 }

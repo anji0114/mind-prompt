@@ -1,61 +1,63 @@
+import { useStore } from '@/store'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/router'
-import { FC } from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
-import { useStore } from '@/store'
 import { EditorHeader } from '../Editor/Header'
 
-export const NoteDetail: FC = () => {
+export const PromptDetail = () => {
   const supabase = useSupabaseClient()
   const router = useRouter()
 
-  const note = useStore((state) => state.editNote)
-  const setNote = useStore((state) => state.setEditNote)
-  const resetNote = useStore((state) => state.resetEditNote)
+  const prompt = useStore((state) => state.editPrompt)
+  const setPrompt = useStore((state) => state.setEditPrompt)
 
-  const handleNoteUpdate = async () => {
+  const handlePromptUpdate = async () => {
     const { error } = await supabase
-      .from('notes')
+      .from('prompts')
       .update({
-        title: note.title,
-        content: note.content,
+        title: prompt.title,
+        content: prompt.content,
       })
-      .eq('id', note.id)
+      .eq('id', prompt.id)
 
     if (error) {
       alert(error.message)
       return
     }
 
-    await router.push('/dashboard')
-    resetNote()
+    router.push('/dashboard/prompt')
   }
 
   return (
     <>
-      <EditorHeader handleUpdate={handleNoteUpdate} prevLink="/dashboard" />
+      <EditorHeader
+        handleUpdate={handlePromptUpdate}
+        prevLink="/dashboard/prompt"
+      />
       <div className="max-w-[800px] mx-auto mt-16">
         <h1>
           <TextareaAutosize
-            value={note.title}
+            value={prompt.title}
             minRows={1}
             placeholder="タイトル"
             className=" w-full text-3xl pb-5 outline-none resize-none border-b border-[#d0d7de]"
+            required
             onChange={(e) => {
-              setNote({ ...note, title: e.target.value })
+              setPrompt({ ...prompt, title: e.target.value })
             }}
-          />
+          ></TextareaAutosize>
         </h1>
+
         <div className="mt-7">
           <TextareaAutosize
-            value={note.content}
+            value={prompt.content}
             onChange={(e) => {
-              setNote({ ...note, content: e.target.value })
+              setPrompt({ ...prompt, content: e.target.value })
             }}
             minRows={6}
             placeholder="入力する"
             className=" w-full py-2.5 px-1 outline-none leading-8 resize-none"
-          />
+          ></TextareaAutosize>
         </div>
       </div>
     </>
