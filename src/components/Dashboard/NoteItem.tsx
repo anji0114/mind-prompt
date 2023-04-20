@@ -38,7 +38,7 @@ export const NoteItem: FC<Props> = ({ id, title }) => {
           </Link>
         </p>
         <p className="mt-2 text-sm text-[#444]">
-          インスピレーションを磨く、アイデアを育てるためのノートです。
+          ノートのディスクリプションが入ります。
         </p>
       </div>
       <div className="w-[40px] relative">

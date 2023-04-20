@@ -59,7 +59,12 @@ export const DashboardPrompt: FC<Props> = ({ prompts, user }) => {
 
       <ul className="mt-8 space-y-[1px]">
         {prompts.map((prompt) => (
-          <PromptItem key={prompt.id} id={prompt.id} title={prompt.title} />
+          <PromptItem
+            key={prompt.id}
+            id={prompt.id}
+            title={prompt.title}
+            content={prompt.content}
+          />
         ))}
       </ul>
     </>
