@@ -9,6 +9,67 @@
   dependencies:
     regenerator-runtime "^0.13.11"
 
+"@codexteam/icons@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@codexteam/icons/-/icons-0.1.0.tgz#a02885fe8699f69902d05b077b5f1cd48a2ca6b9"
+  integrity sha512-jW1fWnwtWzcP4FBGsaodbJY3s1ZaRU+IJy1pvJ7ygNQxkQinybJcwXoyt0a5mWwu/4w30A42EWhCrZn8lp4fdw==
+
+"@codexteam/icons@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@codexteam/icons/-/icons-0.0.4.tgz#8b72dcd3f3a1b0d880bdceb2abebd74b46d3ae13"
+  integrity sha512-V8N/TY2TGyas4wLrPIFq7bcow68b3gu8DfDt1+rrHPtXxcexadKauRJL6eQgfG7Z0LCrN4boLRawR4S9gjIh/Q==
+
+"@codexteam/icons@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@codexteam/icons/-/icons-0.0.5.tgz#d17f39b6a0497c6439f57dd42711817a3dd3679c"
+  integrity sha512-s6H2KXhLz2rgbMZSkRm8dsMJvyUNZsEjxobBEg9ztdrb1B2H3pEzY6iTwI4XUPJWJ3c3qRKwV4TrO3J5jUdoQA==
+
+"@editorjs/code@^2.8.0":
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/code/-/code-2.8.0.tgz#d31fdd947b9c763daae2cd2eabdf8dc37c0c6f5a"
+  integrity sha512-qlv1OqSEPKnLv/ZQgNFmVgqsMbGDkh/qgTEnbVWsS+yujo1nlwgVkqCB8tOkQGVsrpmAYLiWRlA413nKxxCN5w==
+  dependencies:
+    "@codexteam/icons" "^0.0.5"
+
+"@editorjs/editorjs@^2.26.5":
+  version "2.26.5"
+  resolved "https://registry.yarnpkg.com/@editorjs/editorjs/-/editorjs-2.26.5.tgz#ee0f1dbd3a3c6ba97d3ed30f13ab7d2e7b29dbe4"
+  integrity sha512-imwXZi9NmzxKjNosa1xQf286liJYsTe2J2DWCiV5TwKhvYZ1INg5Y+FietcM2v65QmeLqP7wgBUhoI7wiCB+yQ==
+  dependencies:
+    "@codexteam/icons" "0.1.0"
+    codex-notifier "^1.1.2"
+    codex-tooltip "^1.0.5"
+    html-janitor "^2.0.4"
+    nanoid "^3.1.22"
+
+"@editorjs/header@^2.7.0":
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/header/-/header-2.7.0.tgz#755d104a9210a8e2d9ccf22b175b2a93bdbb2330"
+  integrity sha512-4fGKGe2ZYblVqR/P/iw5ieG00uXInFgNMftBMqJRYcB2hUPD30kuu7Sn6eJDcLXoKUMOeqi8Z2AlUxYAmvw7zQ==
+  dependencies:
+    "@codexteam/icons" "^0.0.5"
+
+"@editorjs/inline-code@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/inline-code/-/inline-code-1.4.0.tgz#25e9728bc6c73b7af2a009689679b4950e744417"
+  integrity sha512-nJJx2eBgQyml7U8MdMdJNFY2RgZCOuvvXHEW73xsdu36ZXCd44eAo7vq1S5Jz9l8bC676SvNbRfeH/nojXK37A==
+  dependencies:
+    "@codexteam/icons" "^0.0.5"
+
+"@editorjs/list@^1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/list/-/list-1.8.0.tgz#c64b88679f23c0129ffac589004300832c345d3b"
+  integrity sha512-Vq6cjyTXBzgegYv/MtTfuDdiz59yGhDEc/yAVXr6lmvoWAFs9cJ4TLuh4/9SbrbhIptcQLDvUjMDKmRrV6v2NQ==
+  dependencies:
+    "@codexteam/icons" "^0.0.4"
+
+"@editorjs/paragraph@^2.9.0":
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/paragraph/-/paragraph-2.9.0.tgz#22f508b3771a4f98650e8bb37d628e230f0a378c"
+  integrity sha512-lI6x1eiqFx2X3KmMak6gBlimFqXhG35fQpXMxzrjIphNLr4uPsXhVbyMPimPoLUnS9rM6Q00vptXmP2QNDd0zg==
+  dependencies:
+    "@codexteam/icons" "^0.0.4"
+
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/@eslint-community/eslint-utils/-/eslint-utils-4.4.0.tgz#a23514e8fb9af1269d5f7788aa556798d61c6b59"
@@ -271,6 +332,16 @@
   integrity sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==
   dependencies:
     tslib "^2.4.0"
+
+"@tailwindcss/typography@^0.5.9":
+  version "0.5.9"
+  resolved "https://registry.yarnpkg.com/@tailwindcss/typography/-/typography-0.5.9.tgz#027e4b0674929daaf7c921c900beee80dbad93e8"
+  integrity sha512-t8Sg3DyynFysV9f4JDOVISGsjazNb48AeIYQwcL+Bsq5uf4RYL75C1giZ43KISjeDGBaTN3Kxh7Xj/vRSMJUUg==
+  dependencies:
+    lodash.castarray "^4.4.0"
+    lodash.isplainobject "^4.0.6"
+    lodash.merge "^4.6.2"
+    postcss-selector-parser "6.0.10"
 
 "@types/json5@^0.0.29":
   version "0.0.29"
@@ -619,6 +690,16 @@ client-only@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/client-only/-/client-only-0.0.1.tgz#38bba5d403c41ab150bff64a95c85013cf73bca1"
   integrity sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==
+
+codex-notifier@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/codex-notifier/-/codex-notifier-1.1.2.tgz#a733079185f4c927fa296f1d71eb8753fe080895"
+  integrity sha512-DCp6xe/LGueJ1N5sXEwcBc3r3PyVkEEDNWCVigfvywAkeXcZMk9K41a31tkEFBW0Ptlwji6/JlAb49E3Yrxbtg==
+
+codex-tooltip@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/codex-tooltip/-/codex-tooltip-1.0.5.tgz#ba25fd5b3a58ba2f73fd667c2b46987ffd1edef2"
+  integrity sha512-IuA8LeyLU5p1B+HyhOsqR6oxyFQ11k3i9e9aXw40CrHFTRO2Y1npNBVU3W1SvhKAbUU7R/YikUBdcYFP0RcJag==
 
 color-convert@^2.0.1:
   version "2.0.1"
@@ -1408,6 +1489,11 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
+html-janitor@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/html-janitor/-/html-janitor-2.0.4.tgz#ae5a115cdf3331cd5501edd7b5471b18ea44cdbb"
+  integrity sha512-92J5h9jNZRk30PMHapjHEJfkrBWKCOy0bq3oW2pBungky6lzYSoboBGPMvxl1XRKB2q+kniQmsLsPbdpY7RM2g==
+
 ignore@^5.2.0:
   version "5.2.4"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.2.4.tgz#a291c0c6178ff1b960befe47fcdec301674a6324"
@@ -1731,6 +1817,16 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
+lodash.castarray@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/lodash.castarray/-/lodash.castarray-4.4.0.tgz#c02513515e309daddd4c24c60cfddcf5976d9115"
+  integrity sha512-aVx8ztPv7/2ULbArGJ2Y42bG1mEQ5mGjpdvrbJcJFU3TbYybe+QlLS4pst9zV52ymy2in1KpFPiZnAOATxD4+Q==
+
+lodash.isplainobject@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
+  integrity sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==
+
 lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
@@ -1799,7 +1895,7 @@ mz@^2.7.0:
     object-assign "^4.0.1"
     thenify-all "^1.0.0"
 
-nanoid@^3.3.4, nanoid@^3.3.6:
+nanoid@^3.1.22, nanoid@^3.3.4, nanoid@^3.3.6:
   version "3.3.6"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.6.tgz#443380c856d6e9f9824267d960b4236ad583ea4c"
   integrity sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==
@@ -2060,6 +2156,14 @@ postcss-nested@6.0.0:
   integrity sha512-0DkamqrPcmkBDsLn+vQDIrtkSbNkv5AD/M322ySo9kqFkCIYklym2xEmWkwo+Y3/qZo34tzEPNUw4y7yMCdv5w==
   dependencies:
     postcss-selector-parser "^6.0.10"
+
+postcss-selector-parser@6.0.10:
+  version "6.0.10"
+  resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-6.0.10.tgz#79b61e2c0d1bfc2602d549e11d0876256f8df88d"
+  integrity sha512-IQ7TZdoaqbT+LCpShg46jnZVlhWD2w6iQYAcYXfHARZ7X1t/UGhhceQDs5X0cGqKvYlHNOuv7Oa1xmb0oQuA3w==
+  dependencies:
+    cssesc "^3.0.0"
+    util-deprecate "^1.0.2"
 
 postcss-selector-parser@^6.0.10, postcss-selector-parser@^6.0.11:
   version "6.0.11"
