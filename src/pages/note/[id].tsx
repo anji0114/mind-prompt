@@ -13,7 +13,7 @@ const NoteId: NextPage<{ note: Note }> = ({ note }) => {
   }, [])
 
   return (
-    <div className="min-h-screen pb-10">
+    <div className="min-h-screen">
       <NoteDetail />
     </div>
   )
@@ -33,16 +33,7 @@ export const getServerSideProps = async (ctx: any) => {
     .eq('id', ctx.query.id)
     .single()
 
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/auth/login',
-        permanent: false,
-      },
-    }
-  }
-
-  if (session.user.id !== noteData?.user_id) {
+  if (session?.user.id !== noteData?.user_id) {
     return {
       redirect: {
         destination: '/dashboard',
@@ -53,7 +44,7 @@ export const getServerSideProps = async (ctx: any) => {
 
   return {
     props: {
-      user: session.user,
+      user: session?.user,
       note: noteData,
     },
   }
