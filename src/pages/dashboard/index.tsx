@@ -37,24 +37,15 @@ export const getServerSideProps = async (ctx: any) => {
     data: { session },
   } = await supabase.auth.getSession()
 
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/auth/login',
-        permanent: false,
-      },
-    }
-  }
-
   const { data: notesData } = await supabase
     .from('notes')
     .select('*')
-    .eq('user_id', session.user.id)
+    .eq('user_id', session?.user.id)
     .order('created_at', { ascending: false })
 
   return {
     props: {
-      user: session.user,
+      user: session?.user,
       notes: notesData,
     },
   }
