@@ -4,6 +4,11 @@ import { FC } from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
 import { useStore } from '@/store'
 import { EditorHeader } from '../Editor/Header'
+import dynamic from 'next/dynamic'
+
+const EditorBlock = dynamic(() => import('@/components/Editor/EditorBlock'), {
+  ssr: false,
+})
 
 export const NoteDetail: FC = () => {
   const supabase = useSupabaseClient()
@@ -34,28 +39,20 @@ export const NoteDetail: FC = () => {
   return (
     <>
       <EditorHeader handleUpdate={handleNoteUpdate} prevLink="/dashboard" />
-      <div className="max-w-[800px] mx-auto mt-16">
+      <div className="max-w-[660px] mx-auto mt-16">
         <h1>
           <TextareaAutosize
             value={note.title}
             minRows={1}
             placeholder="タイトル"
-            className=" w-full text-3xl pb-5 outline-none resize-none border-b border-[#d0d7de]"
+            className="w-full text-4xl font-bold outline-none resize-none"
             onChange={(e) => {
               setNote({ ...note, title: e.target.value })
             }}
           />
         </h1>
-        <div className="mt-7">
-          <TextareaAutosize
-            value={note.content}
-            onChange={(e) => {
-              setNote({ ...note, content: e.target.value })
-            }}
-            minRows={6}
-            placeholder="入力する"
-            className=" w-full py-2.5 px-1 outline-none leading-8 resize-none"
-          />
+        <div className="mt-4">
+          <EditorBlock />
         </div>
       </div>
     </>

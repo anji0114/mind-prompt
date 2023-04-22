@@ -4,7 +4,6 @@ import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/router'
 import { ListBulletIcon } from '@heroicons/react/24/solid'
 
-
 type Props = {
   id: string
   title: string

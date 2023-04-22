@@ -33,7 +33,7 @@ export const DashboardNote: FC<Props> = ({ notes, user }) => {
       .from('notes')
       .insert({
         title: '新規ノート',
-        content: '',
+        content: { blocks: [] },
         user_id: user.id,
       })
       .select()
@@ -52,7 +52,9 @@ export const DashboardNote: FC<Props> = ({ notes, user }) => {
       <div className="flex items-center justify-between py-[14px] px-5 border border-[#d0d7de] rounded-md bg-white">
         <h1 className="flex items-center gap-2.5">
           <DocumentTextIcon className="w-[30px]" />
-          <span className="inline-block whitespace-nowrap">ノート管理</span>
+          <span className="inline-block whitespace-nowrap font-medium">
+            ノート管理
+          </span>
         </h1>
         <div className="flex items-center gap-3">
           <button className="flex items-center py-2.5 px-5 gap-2 rounded border border-[#222] hover:bg-[#f5f5f5]">

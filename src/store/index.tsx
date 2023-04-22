@@ -1,4 +1,5 @@
 import { Note, Prompt } from '@/types'
+import { OutputData } from '@editorjs/editorjs'
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 
@@ -14,7 +15,7 @@ type State = {
 
 export const useStore = create<State>()(
   devtools((set) => ({
-    editNote: { id: '', title: '', content: '' },
+    editNote: { id: '', title: '', content: { blocks: [] } },
     setEditNote: (payload) => {
       set({
         editNote: {
@@ -29,7 +30,7 @@ export const useStore = create<State>()(
         editNote: {
           id: '',
           title: '',
-          content: '',
+          content: { blocks: [] },
         },
       })
     },

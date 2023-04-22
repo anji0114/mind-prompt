@@ -10,7 +10,7 @@ const NoteId: NextPage<{ note: Note }> = ({ note }) => {
 
   useEffect(() => {
     setEditNote(note)
-  }, [note])
+  }, [])
 
   return (
     <div className="min-h-screen pb-10">
