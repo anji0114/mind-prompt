@@ -15,7 +15,6 @@ export async function middleware(req: NextRequest) {
   } = await supabase.auth.getSession()
 
   if (isAuthPage && session) {
-    console.log('redirect')
     return NextResponse.redirect(new URL('/dashboard', req.url))
   }
 
