@@ -2,8 +2,8 @@ import { NextPage } from 'next'
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { Prompt } from '@/types'
 import { Layout } from '@/components/Layout'
-import { DashBoardLayout } from '@/components/Dashboard/Layout'
-import { DashboardPrompt } from '@/components/Dashboard/Prompt'
+import { DashBoardLayout } from '@/components/Dashboard/DashboardLayout'
+import { DashboardPrompt } from '@/components/Dashboard/DashbordPrompt'
 
 type User = {
   id: string

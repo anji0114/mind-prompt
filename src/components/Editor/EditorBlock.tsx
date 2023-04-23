@@ -50,7 +50,7 @@ const EditorBlock: FC = () => {
         ref.current = undefined
       }
     }
-  }, [isMounted, initializeEditor])
+  }, [data, initializeEditor])
 
   return <div id="editor" className="prose"></div>
 }

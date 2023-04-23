@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react'
-import { DashboardNav } from './Nav'
+import { DashboardNav } from './DashboardNav'
 
 type Props = {
   children: ReactNode

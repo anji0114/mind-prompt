@@ -1,10 +1,10 @@
-import { useSupabaseClient } from '@supabase/auth-helpers-react'
-import { useRouter } from 'next/router'
 import { FC } from 'react'
+import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import TextareaAutosize from 'react-textarea-autosize'
 import { useStore } from '@/store'
-import { EditorHeader } from '../Editor/Header'
-import dynamic from 'next/dynamic'
+import { EditorHeader } from '@/components/Editor/EditorHeader'
 
 const EditorBlock = dynamic(() => import('@/components/Editor/EditorBlock'), {
   ssr: false,
@@ -38,7 +38,11 @@ export const NoteDetail: FC = () => {
 
   return (
     <>
-      <EditorHeader handleUpdate={handleNoteUpdate} prevLink="/dashboard" />
+      <EditorHeader
+        handleUpdate={handleNoteUpdate}
+        handleReset={resetNote}
+        prevLink="/dashboard"
+      />
       <div className="max-w-[660px] mx-auto mt-16">
         <h1>
           <TextareaAutosize
