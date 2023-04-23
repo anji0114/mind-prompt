@@ -53,7 +53,6 @@ export const getServerSideProps = async (ctx: any) => {
 
   return {
     props: {
-      user: session.user,
       prompt: promptData,
     },
   }

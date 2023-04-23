@@ -70,14 +70,6 @@ export const PromptItem: FC<Props> = ({ id, title, content }) => {
           <ListBulletIcon className=" inline-block w-5" />
         </button>
         <ul className={`menu-ist ${menuOpen ? 'is--open' : 'is--close'}`}>
-          <li className="w-full text-center">
-            <button
-              className="inline-block w-full p-2.5 text-[12px] font-medium whitespace-nowrap text-[#4e6bb4] hover:bg-[#f1f4f7]"
-              onClick={handleCreateNote}
-            >
-              ノート作成
-            </button>
-          </li>
           <li className="w-full text-center border-t border-[#ebeef2]">
             <Link
               href={`/prompt/${id}`}

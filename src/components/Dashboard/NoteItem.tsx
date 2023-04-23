@@ -3,13 +3,15 @@ import Link from 'next/link'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/router'
 import { ListBulletIcon } from '@heroicons/react/24/solid'
+import { format } from 'date-fns'
 
 type Props = {
   id: string
   title: string
+  created_at: string
 }
 
-export const NoteItem: FC<Props> = ({ id, title }) => {
+export const NoteItem: FC<Props> = ({ id, title, created_at }) => {
   const supabase = useSupabaseClient()
   const router = useRouter()
   const [menuOpen, setMenuOpen] = useState(false)
@@ -27,7 +29,9 @@ export const NoteItem: FC<Props> = ({ id, title }) => {
   return (
     <li className="note-item flex gap-5 justify-between items-start py-5 px-7 bg-white border border-[#d0d7de]">
       <div className="w-full">
-        <p className="pl-[2px] text-[#555] text-[12px]">2022.01.01</p>
+        <p className="pl-[2px] text-[#555] text-[12px]">
+          {format(new Date(created_at), 'yyyy/MM/dd')}
+        </p>
         <p className="mt-2.5">
           <Link
             href={`note/${id}`}
@@ -36,9 +40,9 @@ export const NoteItem: FC<Props> = ({ id, title }) => {
             {title}
           </Link>
         </p>
-        <p className="mt-2 text-sm text-[#444]">
+        {/* <p className="mt-2 text-sm text-[#444]">
           ノートのディスクリプションが入ります。
-        </p>
+        </p> */}
       </div>
       <div className="w-[40px] relative">
         <button
