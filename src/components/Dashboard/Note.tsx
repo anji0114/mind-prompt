@@ -1,6 +1,6 @@
-import { useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/router'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import {
   DocumentTextIcon,
   PlusIcon,
@@ -13,6 +13,7 @@ type Note = {
   title: string
   content: string
   user_id: string
+  created_at: string
 }
 
 type User = {
@@ -24,9 +25,11 @@ type Props = {
   user: User
 }
 
-export const DashboardNote: FC<Props> = ({ notes, user }) => {
+export const DashboardNote: FC<Props> = () => {
   const supabase = useSupabaseClient()
+  const user = useUser()
   const router = useRouter()
+  const [notes, setNotes] = useState<Note[] | any>([])
 
   const handleCreateNote = async () => {
     const { data, error } = await supabase
@@ -34,7 +37,7 @@ export const DashboardNote: FC<Props> = ({ notes, user }) => {
       .insert({
         title: '新規ノート',
         content: { blocks: [] },
-        user_id: user.id,
+        user_id: user!.id,
       })
       .select()
       .single()
@@ -46,6 +49,21 @@ export const DashboardNote: FC<Props> = ({ notes, user }) => {
 
     router.push(`/note/${data.id}`)
   }
+
+  useEffect(() => {
+    const getNote = async () => {
+      const { data } = await supabase
+        .from('notes')
+        .select('*')
+        .eq('user_id', user?.id)
+        .order('created_at', { ascending: false })
+
+      setNotes(data)
+    }
+    if (user?.id) {
+      getNote()
+    }
+  }, [user])
 
   return (
     <>
@@ -72,8 +90,13 @@ export const DashboardNote: FC<Props> = ({ notes, user }) => {
       </div>
 
       <ul className="mt-8 space-y-[1px]">
-        {notes?.map((note) => (
-          <NoteItem key={note.id} id={note.id} title={note.title} />
+        {notes?.map((note: Note) => (
+          <NoteItem
+            key={note.id}
+            id={note.id}
+            title={note.title}
+            created_at={note.created_at}
+          />
         ))}
       </ul>
     </>

@@ -1,9 +1,9 @@
-import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { NextPage } from 'next'
 import { NoteDetail } from '@/components/Note/NoteDetail'
 import { useStore } from '@/store'
 import { Note } from '@/types'
 import { useEffect } from 'react'
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 
 const NoteId: NextPage<{ note: Note }> = ({ note }) => {
   const setEditNote = useStore((state) => state.setEditNote)
