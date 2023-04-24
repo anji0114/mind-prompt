@@ -25,18 +25,18 @@ export const PromptItem: FC<Props> = ({ id, title, content }) => {
   }
 
   return (
-    <li className="note-item flex gap-5 justify-between items-start py-5 px-7 bg-white border border-[#d0d7de]">
+    <li className="dashboard-item02 flex gap-5 justify-between items-start py-5 px-7 bg-white border border-[#d0d7de]">
       <div className="w-full">
-        <p className="pl-[2px] text-[#555] text-[12px]">2022.01.01</p>
-        <p className="mt-2.5">
+        <p className="text-[#555] text-[12px]">2022.01.01</p>
+        <p className="mt-2">
           <Link
             href={`/prompt/${id}`}
-            className="text-[#4e6bb4] font-medium underline-offset-2  hover:underline"
+            className="text-[#4e6bb4] text-sm font-medium underline-offset-2  hover:underline"
           >
             {title}
           </Link>
         </p>
-        <p className="mt-2 text-sm text-[#444]">
+        <p className="mt-2 text-[12px] text-[#444]">
           インスピレーションを磨く、アイデアを育てるためのノートです。
         </p>
       </div>

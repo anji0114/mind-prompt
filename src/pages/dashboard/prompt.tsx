@@ -14,43 +14,14 @@ type Props = {
   user: User
 }
 
-const Prompt: NextPage<Props> = ({ prompts, user }) => {
+const Prompt: NextPage<Props> = () => {
   return (
     <Layout>
       <DashBoardLayout>
-        <DashboardPrompt prompts={prompts} user={user} />
+        <DashboardPrompt />
       </DashBoardLayout>
     </Layout>
   )
 }
 
 export default Prompt
-
-export const getServerSideProps = async (ctx: any) => {
-  const supabase = createServerSupabaseClient(ctx)
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/auth/login',
-        permanent: false,
-      },
-    }
-  }
-
-  const { data: promptsData } = await supabase
-    .from('prompts')
-    .select('*')
-    .eq('user_id', session.user?.id)
-    .order('created_at', { ascending: false })
-
-  return {
-    props: {
-      prompts: promptsData,
-      user: session.user,
-    },
-  }
-}

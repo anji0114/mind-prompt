@@ -27,7 +27,7 @@ export const NoteItem: FC<Props> = ({ id, title, created_at }) => {
   }
 
   return (
-    <li className="note-item flex gap-5 justify-between items-start py-5 px-7 bg-white border border-[#d0d7de]">
+    <li className="dashboard-item01 flex gap-5 justify-between items-start py-5 px-7 bg-white border border-[#d0d7de]">
       <div className="w-full">
         <p className="pl-[2px] text-[#555] text-[12px]">
           {format(new Date(created_at), 'yyyy/MM/dd')}

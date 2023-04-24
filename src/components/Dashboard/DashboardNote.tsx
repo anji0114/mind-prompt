@@ -4,7 +4,7 @@ import { FC, useEffect, useState } from 'react'
 import {
   DocumentTextIcon,
   PlusIcon,
-  CommandLineIcon,
+  SquaresPlusIcon,
 } from '@heroicons/react/24/outline'
 import { NoteItem } from '@/components/Dashboard/DashboardNoteItem'
 import { DashboardHeading } from './DashboardHeading'
@@ -64,8 +64,8 @@ export const DashboardNote: FC = () => {
         icon={<DocumentTextIcon className="w-[30px]" />}
       >
         <button className="flex items-center py-2.5 px-5 gap-2 rounded border border-[#222] hover:bg-[#f5f5f5]">
-          <CommandLineIcon className="w-[18px] translate-y-[1px]" />
-          <span className="text-sm inline-block">プロンプトから作成</span>
+          <SquaresPlusIcon className="w-[18px] translate-y-[1px]" />
+          <span className="text-sm inline-block">テンプレートから作成</span>
         </button>
         <button
           className="flex items-center py-2.5 px-5 gap-2 rounded bg-[#222] text-white hover:bg-[#555]"

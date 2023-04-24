@@ -1,23 +1,17 @@
 import { Prompt } from '@/types'
-import { useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/router'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { CommandLineIcon, PlusIcon } from '@heroicons/react/24/outline'
 import { PromptItem } from './DashbordPropmtItem'
 import { DashboardHeading } from './DashboardHeading'
 
-type User = {
-  id: string
-}
-
-type Props = {
-  prompts: Prompt[]
-  user: User
-}
-
-export const DashboardPrompt: FC<Props> = ({ prompts, user }) => {
+export const DashboardPrompt: FC = () => {
   const supabase = useSupabaseClient()
   const router = useRouter()
+  const user = useUser()
+  const [prompts, setPrompts] = useState<Prompt[] | any>([])
+
   const handleCreatePrompt = async () => {
     const { data, error } = await supabase
       .from('prompts')
@@ -38,6 +32,21 @@ export const DashboardPrompt: FC<Props> = ({ prompts, user }) => {
     router.push(`/prompt/${data.id}`)
   }
 
+  useEffect(() => {
+    const getPrompts = async () => {
+      const { data } = await supabase
+        .from('prompts')
+        .select('*')
+        .eq('user_id', user!.id)
+        .order('created_at', { ascending: false })
+      setPrompts(data)
+    }
+
+    if (user?.id) {
+      getPrompts()
+    }
+  }, [user])
+
   return (
     <>
       <DashboardHeading
@@ -53,8 +62,8 @@ export const DashboardPrompt: FC<Props> = ({ prompts, user }) => {
         </button>
       </DashboardHeading>
 
-      <ul className="mt-8 space-y-[1px]">
-        {prompts.map((prompt) => (
+      <ul className="mt-8 grid gap-[1px] grid-cols-2">
+        {prompts.map((prompt: Prompt) => (
           <PromptItem
             key={prompt.id}
             id={prompt.id}
