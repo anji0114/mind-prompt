@@ -4,6 +4,7 @@ import { PlusIcon, SquaresPlusIcon } from '@heroicons/react/24/outline'
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
 import { Note } from '@/types'
 import { TemplateItem } from './DashboardTemplateItem'
+import { OutputData } from '@editorjs/editorjs'
 
 export const DashboardTemplate = () => {
   const supabase = useSupabaseClient()
@@ -59,14 +60,19 @@ export const DashboardTemplate = () => {
         </button>
       </DashboardHeading>
       <ul className="mt-8 space-y-[1px]">
-        {templates.map((template: Note & { created_at: string }) => (
-          <TemplateItem
-            key={template.id}
-            title={template.title}
-            id={template.id}
-            created_at={template.created_at}
-          />
-        ))}
+        {templates.map(
+          (
+            template: Note & { created_at: string } & { content: OutputData }
+          ) => (
+            <TemplateItem
+              key={template.id}
+              title={template.title}
+              id={template.id}
+              content={template.content}
+              created_at={template.created_at}
+            />
+          )
+        )}
       </ul>
     </div>
   )
