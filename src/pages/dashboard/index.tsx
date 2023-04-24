@@ -20,34 +20,14 @@ type Props = {
   notes: Note[]
   user: User
 }
-const Dashboard: NextPage<Props> = ({ notes, user }) => {
+const Dashboard: NextPage<Props> = () => {
   return (
     <Layout>
       <DashBoardLayout>
-        <DashboardNote notes={notes} user={user} />
+        <DashboardNote />
       </DashBoardLayout>
     </Layout>
   )
 }
 
 export default Dashboard
-
-export const getServerSideProps = async (ctx: any) => {
-  const supabase = createServerSupabaseClient(ctx)
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
-  const { data: notesData } = await supabase
-    .from('notes')
-    .select('*')
-    .eq('user_id', session?.user.id)
-    .order('created_at', { ascending: false })
-
-  return {
-    props: {
-      user: session?.user,
-      notes: notesData,
-    },
-  }
-}
