@@ -59,8 +59,9 @@ export const DashboardTemplate = () => {
         </button>
       </DashboardHeading>
       <ul className="mt-8 space-y-[1px]">
-        {templates.map((template: Note) => (
+        {templates.map((template: Note & { created_at: string }) => (
           <TemplateItem
+            key={template.id}
             title={template.title}
             id={template.id}
             created_at={template.created_at}
