@@ -2,7 +2,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
-import { HeaderAuthButtons } from '@/components/Header/HeaderAuthButtons'
 
 export const Header = () => {
   const user = useUser()
@@ -23,7 +22,20 @@ export const Header = () => {
           </Link>
           <div className="flex items-center">
             {!user ? (
-              <HeaderAuthButtons />
+              <>
+                <Link
+                  href="/auth/login"
+                  className="text-sm font-medium underline-offset-2 hover:underline"
+                >
+                  ログイン
+                </Link>
+                <Link
+                  href="/auth/signup"
+                  className="text-sm font-medium inline-block ml-5 py-2.5 px-6 bg-[#222] text-white rounded hover:bg-[#555]"
+                >
+                  サインアップ
+                </Link>
+              </>
             ) : (
               <button
                 className="text-sm font-medium underline-offset-2 hover:underline"

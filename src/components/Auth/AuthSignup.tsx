@@ -2,7 +2,6 @@ import { FormEvent, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import Link from 'next/link'
-import styles from '@/components/Auth/Auth.module.scss'
 
 export const AuthSignup = () => {
   const supabase = useSupabaseClient()

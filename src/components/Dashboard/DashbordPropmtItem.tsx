@@ -12,7 +12,6 @@ type Props = {
 
 export const PromptItem: FC<Props> = ({ id, title, content }) => {
   const supabase = useSupabaseClient()
-  const user = useUser()
   const router = useRouter()
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -23,25 +22,6 @@ export const PromptItem: FC<Props> = ({ id, title, content }) => {
       return
     }
     router.reload()
-  }
-
-  const handleCreateNote = async () => {
-    const { data, error } = await supabase
-      .from('notes')
-      .insert({
-        title: title,
-        content: content,
-        user_id: user?.id,
-      })
-      .select()
-      .single()
-
-    if (error) {
-      alert(error.message)
-      return
-    }
-
-    router.push(`/note/${data.id}`)
   }
 
   return (

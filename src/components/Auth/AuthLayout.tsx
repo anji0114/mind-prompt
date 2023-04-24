@@ -1,7 +1,6 @@
 import { FC, ReactNode } from 'react'
 import { Header } from '../Header'
 import { Footer } from '../Footer'
-import styles from '@/components/Auth/AuthLayout.module.scss'
 
 type Props = {
   children: ReactNode

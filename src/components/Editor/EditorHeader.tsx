@@ -5,15 +5,20 @@ import { useStore } from '@/store'
 
 type Props = {
   handleUpdate: () => void
+  handleReset: () => void
   prevLink: string
 }
 
-export const EditorHeader: FC<Props> = ({ handleUpdate, prevLink }) => {
+export const EditorHeader: FC<Props> = ({
+  handleUpdate,
+  handleReset,
+  prevLink,
+}) => {
   const router = useRouter()
-  const restNote = useStore((state) => state.resetEditNote)
+
   const handleBackButton = async (link: string) => {
     await router.push(link)
-    restNote()
+    handleReset()
   }
 
   return (

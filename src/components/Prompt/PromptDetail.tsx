@@ -2,14 +2,14 @@ import { useStore } from '@/store'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/router'
 import TextareaAutosize from 'react-textarea-autosize'
-import { EditorHeader } from '../Editor/Header'
+import { EditorHeader } from '../Editor/EditorHeader'
 
 export const PromptDetail = () => {
   const supabase = useSupabaseClient()
   const router = useRouter()
-
   const prompt = useStore((state) => state.editPrompt)
   const setPrompt = useStore((state) => state.setEditPrompt)
+  const resetPrompt = useStore((state) => state.resetEditPrompt)
 
   const handlePromptUpdate = async () => {
     const { error } = await supabase
@@ -32,6 +32,7 @@ export const PromptDetail = () => {
     <>
       <EditorHeader
         handleUpdate={handlePromptUpdate}
+        handleReset={resetPrompt}
         prevLink="/dashboard/prompt"
       />
       <div className="max-w-[800px] mx-auto mt-16">
