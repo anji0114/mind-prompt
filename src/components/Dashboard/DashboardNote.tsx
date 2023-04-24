@@ -17,16 +17,7 @@ type Note = {
   created_at: string
 }
 
-type User = {
-  id: string
-}
-
-type Props = {
-  notes: Note[]
-  user: User
-}
-
-export const DashboardNote: FC<Props> = () => {
+export const DashboardNote: FC = () => {
   const supabase = useSupabaseClient()
   const user = useUser()
   const router = useRouter()
