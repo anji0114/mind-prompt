@@ -24,7 +24,7 @@ export const I18N = {
   messages: {
     toolNames: {
       Text: 'テキスト',
-      Heading: 'タイトル',
+      Heading: '見出し',
       Code: 'コード',
       List: 'リスト',
     },
