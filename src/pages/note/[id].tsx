@@ -1,4 +1,4 @@
-import { NextPage } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 import { NoteDetail } from '@/components/Note/NoteDetail'
 import { useStore } from '@/store'
 import { Note } from '@/types'
@@ -12,17 +12,13 @@ const NoteId: NextPage<{ note: Note }> = ({ note }) => {
     setEditNote(note)
   }, [])
 
-  return (
-    <div className="min-h-screen">
-      <NoteDetail />
-    </div>
-  )
+  return <NoteDetail />
 }
 
 export default NoteId
 
-export const getServerSideProps = async (ctx: any) => {
-  const supabase = createServerSupabaseClient(ctx)
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const supabase = createServerSupabaseClient(context)
   const {
     data: { session },
   } = await supabase.auth.getSession()
@@ -30,7 +26,7 @@ export const getServerSideProps = async (ctx: any) => {
   const { data: noteData } = await supabase
     .from('notes')
     .select('*')
-    .eq('id', ctx.query.id)
+    .eq('id', context.query.id)
     .single()
 
   if (session?.user.id !== noteData?.user_id) {
@@ -44,7 +40,6 @@ export const getServerSideProps = async (ctx: any) => {
 
   return {
     props: {
-      user: session?.user,
       note: noteData,
     },
   }

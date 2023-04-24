@@ -52,7 +52,7 @@ export const DashboardNote: FC<Props> = () => {
   }
 
   useEffect(() => {
-    const getNote = async () => {
+    const getNotes = async () => {
       const { data } = await supabase
         .from('notes')
         .select('*')
@@ -62,12 +62,12 @@ export const DashboardNote: FC<Props> = () => {
       setNotes(data)
     }
     if (user?.id) {
-      getNote()
+      getNotes()
     }
   }, [user])
 
   return (
-    <>
+    <div className="min-h-screen">
       <DashboardHeading
         title="ノート管理"
         icon={<DocumentTextIcon className="w-[30px]" />}
@@ -95,6 +95,6 @@ export const DashboardNote: FC<Props> = () => {
           />
         ))}
       </ul>
-    </>
+    </div>
   )
 }
