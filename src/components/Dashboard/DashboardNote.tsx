@@ -1,6 +1,7 @@
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/router'
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
+import useSWR from 'swr'
 import {
   DocumentTextIcon,
   PlusIcon,
@@ -21,7 +22,7 @@ export const DashboardNote: FC = () => {
   const supabase = useSupabaseClient()
   const user = useUser()
   const router = useRouter()
-  const [notes, setNotes] = useState<Note[] | any>([])
+  const { data, error, isLoading } = useSWR('/api/notes')
 
   const handleCreateNote = async () => {
     const { data, error } = await supabase
@@ -42,23 +43,8 @@ export const DashboardNote: FC = () => {
     router.push(`/note/${data.id}`)
   }
 
-  useEffect(() => {
-    const getNotes = async () => {
-      const { data } = await supabase
-        .from('notes')
-        .select('*')
-        .eq('user_id', user?.id)
-        .order('created_at', { ascending: false })
-
-      setNotes(data)
-    }
-    if (user?.id) {
-      getNotes()
-    }
-  }, [user])
-
   return (
-    <div className="min-h-screen">
+    <>
       <DashboardHeading
         title="ノート管理"
         icon={<DocumentTextIcon className="w-[30px]" />}
@@ -76,16 +62,26 @@ export const DashboardNote: FC = () => {
         </button>
       </DashboardHeading>
 
-      <ul className="mt-8 space-y-[1px]">
-        {notes?.map((note: Note) => (
-          <NoteItem
-            key={note.id}
-            id={note.id}
-            title={note.title}
-            created_at={note.created_at}
-          />
-        ))}
-      </ul>
-    </div>
+      <div className="mt-8">
+        {isLoading ? (
+          <p className="text-center text-sm">ローディング</p>
+        ) : error ? (
+          <p className="text-center text-sm">
+            エラーが発生しデータの取得に失敗しました。
+          </p>
+        ) : (
+          <ul className="space-y-[1px]">
+            {data?.map((note: Note) => (
+              <NoteItem
+                key={note.id}
+                id={note.id}
+                title={note.title}
+                created_at={note.created_at}
+              />
+            ))}
+          </ul>
+        )}
+      </div>
+    </>
   )
 }

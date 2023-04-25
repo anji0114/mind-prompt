@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react'
 import { DashboardHeading } from './DashboardHeading'
 import { PlusIcon, SquaresPlusIcon } from '@heroicons/react/24/outline'
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
 import { Note } from '@/types'
 import { TemplateItem } from './DashboardTemplateItem'
 import { OutputData } from '@editorjs/editorjs'
+import useSWR from 'swr'
+import { useRouter } from 'next/router'
 
 export const DashboardTemplate = () => {
-  const supabase = useSupabaseClient()
+  const router = useRouter()
   const user = useUser()
-  const [templates, setTemplates] = useState<Note[] | any>([])
+  const supabase = useSupabaseClient()
+
+  const { data, error, isLoading } = useSWR('/api/templates')
 
   const handleCreateTemplate = async () => {
     const { data, error } = await supabase
@@ -21,29 +24,14 @@ export const DashboardTemplate = () => {
       })
       .select()
       .single()
+
     if (error) {
       alert(error.message)
       return
     }
 
-    alert('success')
+    router.push(`/template/${data.id}`)
   }
-
-  useEffect(() => {
-    const getTemplates = async () => {
-      const { data } = await supabase
-        .from('templates')
-        .select('*')
-        .eq('user_id', user?.id)
-        .order('created_at', { ascending: false })
-
-      setTemplates(data)
-    }
-
-    if (user?.id) {
-      getTemplates()
-    }
-  }, [user])
 
   return (
     <div>
@@ -59,21 +47,33 @@ export const DashboardTemplate = () => {
           <span className="text-sm inline-block">新規作成</span>
         </button>
       </DashboardHeading>
-      <ul className="mt-8 space-y-[1px]">
-        {templates.map(
-          (
-            template: Note & { created_at: string } & { content: OutputData }
-          ) => (
-            <TemplateItem
-              key={template.id}
-              title={template.title}
-              id={template.id}
-              content={template.content}
-              created_at={template.created_at}
-            />
-          )
+      <div className="mt-8">
+        {isLoading ? (
+          <p className="text-center text-sm">ローディング</p>
+        ) : error ? (
+          <p className="text-center text-sm">
+            エラーが発生しデータの取得に失敗しました。
+          </p>
+        ) : (
+          <ul className="space-y-[1px]">
+            {data?.map(
+              (
+                template: Note & { created_at: string } & {
+                  content: OutputData
+                }
+              ) => (
+                <TemplateItem
+                  key={template.id}
+                  title={template.title}
+                  id={template.id}
+                  content={template.content}
+                  created_at={template.created_at}
+                />
+              )
+            )}
+          </ul>
         )}
-      </ul>
+      </div>
     </div>
   )
 }
