@@ -1,16 +1,36 @@
 import { GetServerSideProps, NextPage } from 'next'
 import { NoteDetail } from '@/components/Note/NoteDetail'
 import { useStore } from '@/store'
-import { Note } from '@/types'
 import { useEffect } from 'react'
-import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import useSWR from 'swr'
+import { useUser } from '@supabase/auth-helpers-react'
 
-const NoteId: NextPage<{ note: Note }> = ({ note }) => {
+const NoteId: NextPage<{ params: string }> = ({ params }) => {
   const setEditNote = useStore((state) => state.setEditNote)
+  const user = useUser()
+  const { data, error, isLoading } = useSWR(`/api/notes/${params}`)
 
   useEffect(() => {
-    setEditNote(note)
-  }, [])
+    if (data !== undefined) {
+      setEditNote(data)
+    }
+  }, [data])
+
+  if (isLoading) {
+    return (
+      <div className=" h-screen flex justify-center items-center">
+        ローディング中
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className=" h-screen flex justify-center items-center">
+        エラーが発生しました
+      </div>
+    )
+  }
 
   return <NoteDetail />
 }
@@ -18,29 +38,9 @@ const NoteId: NextPage<{ note: Note }> = ({ note }) => {
 export default NoteId
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const supabase = createServerSupabaseClient(context)
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
-  const { data: noteData } = await supabase
-    .from('notes')
-    .select('*')
-    .eq('id', context.query.id)
-    .single()
-
-  if (session?.user.id !== noteData?.user_id) {
-    return {
-      redirect: {
-        destination: '/dashboard',
-        permanent: false,
-      },
-    }
-  }
-
   return {
     props: {
-      note: noteData,
+      params: context.query.id,
     },
   }
 }
