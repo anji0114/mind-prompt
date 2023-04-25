@@ -6,7 +6,7 @@ export const HomeMv = () => {
   const user = useUser()
 
   return (
-    <div className="min-h-[60vh] flex items-center justify-center">
+    <div className="min-h-[calc(100vh_-_12rem_-_150px)] flex items-center justify-center">
       <div>
         <div className="text-center">
           <Image

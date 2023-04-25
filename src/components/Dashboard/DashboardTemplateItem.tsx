@@ -62,9 +62,6 @@ export const TemplateItem: FC<Props> = ({ id, title, content, created_at }) => {
             {title}
           </Link>
         </p>
-        {/* <p className="mt-2 text-sm text-[#444]">
-          ノートのディスクリプションが入ります。
-        </p> */}
       </div>
       <div className="w-[40px] relative">
         <button
@@ -79,7 +76,9 @@ export const TemplateItem: FC<Props> = ({ id, title, content, created_at }) => {
           <li className="w-full text-center">
             <button
               className="inline-block text-[#4e6bb4] w-full p-2.5 text-[12px] font-medium hover:bg-[#f1f4f7]"
-              onClick={handleCreateNoteFromTemplate}
+              onClick={() => {
+                handleCreateNoteFromTemplate()
+              }}
             >
               ノートを作成する
             </button>
