@@ -1,7 +1,7 @@
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { NextApiRequest, NextApiResponse } from 'next'
 
-const NotesApi = async (req: NextApiRequest, res: NextApiResponse) => {
+const NotesIdApi = async (req: NextApiRequest, res: NextApiResponse) => {
   const supabase = createServerSupabaseClient({ req, res })
 
   const {
@@ -13,11 +13,12 @@ const NotesApi = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   if (req.method === 'GET') {
+    const noteId = req.query.id
     const { data, error } = await supabase
       .from('notes')
       .select('*')
-      .eq('user_id', user!.id)
-      .order('created_at', { ascending: false })
+      .eq('id', noteId)
+      .single()
 
     if (error) {
       return res.status(401).json({ message: error })
@@ -27,4 +28,4 @@ const NotesApi = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-export default NotesApi
+export default NotesIdApi

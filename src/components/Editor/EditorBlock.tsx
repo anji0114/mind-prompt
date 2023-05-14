@@ -13,8 +13,8 @@ import { useStore } from '@/store'
 const EditorBlock: FC = () => {
   const [isMounted, setIsMounted] = useState<boolean>(false)
   const ref = useRef<EditorJS>()
-  const data = useStore((state) => state.editNote)
-  const setData = useStore((state) => state.setEditNote)
+  const note = useStore((state) => state.note)
+  const setNote = useStore((state) => state.setNote)
 
   const initializeEditor = useCallback((data: any) => {
     if (!ref.current) {
@@ -27,7 +27,7 @@ const EditorBlock: FC = () => {
 
         async onChange(api, event) {
           const editorData = await api.saver.save()
-          setData({ ...data, content: editorData })
+          setNote({ ...data, content: editorData })
         },
       })
 
@@ -36,14 +36,14 @@ const EditorBlock: FC = () => {
   }, [])
 
   useEffect(() => {
-    if (data.id) {
+    if (note.id) {
       setIsMounted(true)
     }
-  }, [data])
+  }, [note])
 
   useEffect(() => {
     if (isMounted) {
-      initializeEditor(data)
+      initializeEditor(note)
 
       return () => {
         ref.current?.destroy()

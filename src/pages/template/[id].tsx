@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 type Template = Note
 
 const TemplateId: NextPage<{ template: Template }> = ({ template }) => {
-  const setTemplate = useStore((state) => state.setEditNote)
+  const setTemplate = useStore((state) => state.setNote)
 
   useEffect(() => {
     setTemplate(template)
