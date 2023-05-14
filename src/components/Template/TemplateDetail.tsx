@@ -10,9 +10,9 @@ const EditorBlock = dynamic(() => import('@/components/Editor/EditorBlock'), {
 })
 
 export const TemplateDetail = () => {
-  const template = useStore((state) => state.editNote)
-  const setTemplate = useStore((state) => state.setEditNote)
-  const resetTemplate = useStore((state) => state.resetEditNote)
+  const template = useStore((state) => state.note)
+  const setTemplate = useStore((state) => state.setNote)
+  const resetTemplate = useStore((state) => state.resetNote)
   const supabase = useSupabaseClient()
   const router = useRouter()
 

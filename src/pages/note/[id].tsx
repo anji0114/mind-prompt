@@ -6,13 +6,13 @@ import useSWR from 'swr'
 import { useUser } from '@supabase/auth-helpers-react'
 
 const NoteId: NextPage<{ params: string }> = ({ params }) => {
-  const setEditNote = useStore((state) => state.setEditNote)
+  const setNote = useStore((state) => state.setNote)
   const user = useUser()
   const { data, error, isLoading } = useSWR(`/api/notes/${params}`)
 
   useEffect(() => {
     if (data !== undefined) {
-      setEditNote(data)
+      setNote(data)
     }
   }, [data])
 

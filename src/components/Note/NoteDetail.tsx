@@ -14,9 +14,9 @@ export const NoteDetail: FC = () => {
   const supabase = useSupabaseClient()
   const router = useRouter()
 
-  const note = useStore((state) => state.editNote)
-  const setNote = useStore((state) => state.setEditNote)
-  const resetNote = useStore((state) => state.resetEditNote)
+  const note = useStore((state) => state.note)
+  const setNote = useStore((state) => state.setNote)
+  const resetNote = useStore((state) => state.resetNote)
 
   const handleNoteUpdate = async () => {
     const { error } = await supabase

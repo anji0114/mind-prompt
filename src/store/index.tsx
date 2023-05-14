@@ -3,9 +3,9 @@ import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 
 type State = {
-  editNote: Note
-  setEditNote: (payload: Note) => void
-  resetEditNote: () => void
+  note: Note
+  setNote: (payload: Note) => void
+  resetNote: () => void
 
   editPrompt: Prompt
   setEditPrompt: (payload: Prompt) => void
@@ -15,19 +15,19 @@ type State = {
 export const useStore = create<State>()(
   devtools((set) => ({
     // note, note template
-    editNote: { id: '', title: '', content: { blocks: [] } },
-    setEditNote: (payload) => {
+    note: { id: '', title: '', content: { blocks: [] } },
+    setNote: (payload) => {
       set({
-        editNote: {
+        note: {
           id: payload.id,
           title: payload.title,
           content: payload.content,
         },
       })
     },
-    resetEditNote: () => {
+    resetNote: () => {
       set({
-        editNote: {
+        note: {
           id: '',
           title: '',
           content: { blocks: [] },
